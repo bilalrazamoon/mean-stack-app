@@ -1,0 +1,77 @@
+/**
+ * Created by hafizbilalraza on 9/26/2014.
+ */
+/**
+ * Module dependencies.
+ */
+
+var express = require('express'),
+    errorHandler = require('errorhandler'),
+    path = require('path'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
+    mongoose= require('mongoose');
+
+/**
+ * Configuration.
+ */
+
+var config = {
+    port: process.env.PORT || 8080,
+
+    db: process.env.MONGODB|| 'mongodb://localhost:27017/mean-stack-app'
+};
+
+/**
+ * Create Express server.
+ */
+
+var app = express();
+
+/**
+ * Connect to MongoDB.
+ */
+
+mongoose.connect(config.db);
+mongoose.connection.on('error', function() {
+    console.error('MongoDB Connection Error. Make sure MongoDB is running.');
+});
+mongoose.connection.once('open', function(){
+    console.log('mongodb Connected');
+});
+
+/**
+ * Express configuration.
+ */
+
+app.set('port', config.port);
+app.use(logger('dev'));
+app.use(bodyParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(methodOverride());
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+/**
+ * Routes
+ */
+
+var api = require('./routes/posts');
+app.use('/api', api);
+
+/**
+ * 500 Error Handler.
+ */
+
+app.use(errorHandler());
+
+/**
+ * Start Express server.
+ */
+
+app.listen(app.get('port'), function() {
+    console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
+});
