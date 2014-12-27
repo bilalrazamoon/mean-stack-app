@@ -1,0 +1,34 @@
+<ol class="breadcrumb">
+    <li><a ui-sref="posts">Posts</a></li>
+    <li class="active">{{post.title}}</li>
+</ol>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h2>{{post.title}}</h2>
+        <p>{{post.desc}}</p>
+
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Like</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default" ng-click="post.comment=!post.comment"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comment</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer" ng-show="post.comment">
+        <p class="text-center" ng-show="post.comments.length==0">No Comments</p>
+        <div ng-repeat="c in post.comments">
+            <h4>{{c.author}}</h4>
+            <p>{{c.body}}</p>
+        </div>
+        <form ng-submit="addComment()">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Add a Comment" ng-model="comment.body">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Send!</button>
+                  </span>
+            </div>
+        </form>
+    </div>
+</div>

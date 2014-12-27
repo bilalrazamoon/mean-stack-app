@@ -1,0 +1,7 @@
+<div class="panel panel-default" ng-repeat="post in posts | orderBy:'title'">
+    <div class="panel-body">
+        <h2>{{post.title}}</h2>
+        <p>{{post.desc.slice(0,150)+"..."}}</p>
+        <a ui-sref="post({id: post._id})">See more</a>
+    </div>
+</div>
