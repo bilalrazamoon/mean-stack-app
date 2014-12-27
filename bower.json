@@ -4,7 +4,6 @@
   "authors": [
     "hafizbilalraza <hafizbilal112@gmail.com>"
   ],
-  "directory": "public/",
   "ignore": [
     "**/.*",
     "node_modules",

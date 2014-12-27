@@ -3,17 +3,31 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css"/>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="lib/components-font-awesome/css/font-awesome.min.css"/>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!--app.js-->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/factory.js"></script>
 </head>
-<body>
+<body ng-app="mean-stack">
 <div class="container">
     <h1 class="page-header">Mean-Stack-App</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <div ui-view></div>
+        </div>
+        <div class="col-md-4">
+            <div class="list-group">
+                <a class="list-group-item" ui-sref="create" ui-sref-active="active">Create New Post</a>
+                <a class="list-group-item" ui-sref="posts" ui-sref-active="active">Get All Posts</a>
+            </div>
+        </div>
+    </div>
 </div>
-    <div ui-view></div>
 </body>
 </html>
